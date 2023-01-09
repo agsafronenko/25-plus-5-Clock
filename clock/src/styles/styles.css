@@ -1,0 +1,50 @@
+:root {
+  --main-color: linear-gradient(0.25turn, #4490b0, #e7f1df, #f49836);
+  --second-color: rgb(219, 0, 0);
+  font-size: 1.1rem;
+  font-weight: 1000;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+html {
+  background: var(--main-color);
+  color: var(--second-color);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#clock-box {
+  border: 2px solid rgb(242, 244, 245);
+  border-radius: 5px;
+  padding: 20px;
+  min-width: 400px;
+}
+
+#title {
+  text-align: center;
+}
+
+#length-boxes {
+  border: 2px solid yellow;
+  display: flex;
+  justify-content: center;
+}
+
+.length-box {
+  border: 2px solid red;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}
+
+.length-controls {
+  display: flex;
+  justify-content: center;
+}
+
+#timer {
+  border: 2px solid blue;
+}
