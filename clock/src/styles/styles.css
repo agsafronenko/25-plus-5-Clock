@@ -1,7 +1,8 @@
 :root {
-  --main-color: linear-gradient(0.25turn, #4490b0, #e7f1df, #f49836);
+  --main-color: linear-gradient(0.25turn, hsl(198, 44%, 48%), hsl(93, 39%, 91%), hsl(31, 90%, 58%));
   --second-color: rgb(219, 0, 0);
-  font-size: 1.1rem;
+  --font-color: rgba(219, 0, 0, 0.729);
+  --font-color2: hsl(93, 39%, 91%);
   font-weight: 1000;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
@@ -17,27 +18,56 @@ html {
 }
 
 #clock-box {
-  border: 2px solid rgb(242, 244, 245);
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 20px;
   min-width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+button {
+  background: none;
+  border: 1px solid hsla(93, 39%, 91%, 0.051);
+  margin: 10px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  border-radius: 7px;
+  font-size: 15px;
+  overflow: hidden;
+  color: var(--font-color);
 }
 
 #title {
-  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  border-radius: 7px;
+  width: fit-content;
+  padding: 5px 20px;
+  margin: 5px auto 20px auto;
+  font-size: 35px;
 }
 
 #length-boxes {
-  border: 2px solid yellow;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .length-box {
-  border: 2px solid red;
-  justify-content: center;
   text-align: center;
   width: 50%;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  border-radius: 7px;
+  width: fit-content;
+  padding: 5px 20px;
+  margin: 5px auto 20px auto;
+  font-size: 20px;
+}
+
+#break-length,
+#session-length {
+  margin: auto;
+  font-size: 20px;
 }
 
 .length-controls {
@@ -45,6 +75,71 @@ html {
   justify-content: center;
 }
 
-#timer {
-  border: 2px solid blue;
+#timer-box {
+  margin: auto;
+  border-radius: 7px;
+  width: 200px;
+  height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#timer-label {
+  font-size: 25px;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#time-left {
+  font-size: 55px;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer-label,
+#time-left {
+  text-align: center;
+}
+
+#control-buttons {
+  text-align: center;
+}
+
+#control-buttons button {
+  min-width: 40px;
+  height: 40px;
+  font-size: 25px;
+  width: fit-content;
+}
+
+button:hover {
+  box-shadow: 2px 2px 17px 1px var(--font-color2);
+}
+
+button:active {
+  color: var(--font-color2);
+  background-color: var(--second-color);
+  box-shadow: 0 2px 7px 2px var(--font-color2);
+  transform: translateY(-2px);
+}
+
+#footer {
+  font-size: 12px;
+  position: fixed;
+  bottom: 10px;
+  font-style: italic;
+  width: 400px;
+  width: 100vw;
+  left: 0;
+  text-align: center;
 }

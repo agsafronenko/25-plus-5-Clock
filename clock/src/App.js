@@ -44,7 +44,6 @@ export default class Clock extends React.Component {
   }
 
   start_stop() {
-    // document.getElementById("beep").play();
     if (this.state.pause === "on") {
       this.setState({
         pause: "off",
@@ -90,14 +89,17 @@ export default class Clock extends React.Component {
       }));
     }
     return (
-      <div id="clock-box">
-        <h2 id="title">25 + 5 Clock</h2>
-        <div id="length-boxes">
-          <Break handleBreakLength={this.handleBreakLength} breakLength={this.state.break} />
-          <Session handleSessionLength={this.handleSessionLength} sessionLength={this.state.session} />
+      <>
+        <div id="clock-box">
+          <h2 id="title">25 + 5 Clock</h2>
+          <div id="length-boxes">
+            <Break handleBreakLength={this.handleBreakLength} breakLength={this.state.break} />
+            <Session handleSessionLength={this.handleSessionLength} sessionLength={this.state.session} />
+          </div>
+          <Timer status={this.state.status} reset={this.handleReset} start_stop={this.start_stop} timeLeft={this.state.timeLeft} />
         </div>
-        <Timer status={this.state.status} reset={this.handleReset} start_stop={this.start_stop} timeLeft={this.state.timeLeft} />
-      </div>
+        <Footer />
+      </>
     );
   }
 }
@@ -112,11 +114,11 @@ class Break extends React.Component {
         <div id="break-label">Break Length</div>
         <div className="length-controls">
           <button id="break-decrement" onClick={this.props.handleBreakLength}>
-            -
+            <i className="fa-solid fa-arrow-down"></i>
           </button>
           <div id="break-length">{this.props.breakLength / 60}</div>
           <button id="break-increment" onClick={this.props.handleBreakLength}>
-            +
+            <i className="fa-solid fa-arrow-up"></i>
           </button>
         </div>
       </div>
@@ -134,11 +136,11 @@ class Session extends React.Component {
         <div id="session-label">Session Length</div>
         <div className="length-controls">
           <button id="session-decrement" onClick={this.props.handleSessionLength}>
-            -
+            <i className="fa-solid fa-arrow-down"></i>
           </button>
           <div id="session-length">{this.props.sessionLength / 60}</div>
           <button id="session-increment" onClick={this.props.handleSessionLength}>
-            +
+            <i className="fa-solid fa-arrow-up"></i>
           </button>
         </div>
       </div>
@@ -156,16 +158,29 @@ class Timer extends React.Component {
     let timeLeftMMSS = "" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
     return (
       <div id="timer">
-        <div id="timer-label">{this.props.status}</div>
-        <div id="time-left">{timeLeftMMSS}</div>
-        <button id="start_stop" onClick={this.props.start_stop}>
-          start-stop
-        </button>
-        <button id="reset" onClick={this.props.reset}>
-          reset
-        </button>
+        <div id="timer-box">
+          <div id="timer-label">{this.props.status}</div>
+          <div id="time-left">{timeLeftMMSS}</div>
+        </div>
+        <div id="control-buttons">
+          <button id="start_stop" onClick={this.props.start_stop}>
+            <i className="fa-solid fa-play"></i>
+            <i className="fa-solid fa-pause"></i>
+          </button>
+          <button id="reset" onClick={this.props.reset}>
+            <i className="fa-solid fa-arrows-rotate"></i>
+          </button>
+        </div>
         <audio id="beep" src={beep} type="audio/wav"></audio>
       </div>
     );
   }
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div id="footer">coded in: HTML, CSS, JavaScript and React</div>
+    </footer>
+  );
 }
