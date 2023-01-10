@@ -1,5 +1,6 @@
 {
   "name": "clock",
+  "homepage": "http://agsafronenko.github.io/25-plus-5-Clock",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
