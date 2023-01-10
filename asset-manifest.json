@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/25-plus-5-Clock/static/css/main.29584295.css",
-    "main.js": "/25-plus-5-Clock/static/js/main.a6640bcf.js",
+    "main.js": "/25-plus-5-Clock/static/js/main.051af72d.js",
     "static/media/timeIsUp.wav": "/25-plus-5-Clock/static/media/timeIsUp.162a94e2390c82332bbb.wav",
     "index.html": "/25-plus-5-Clock/index.html",
     "main.29584295.css.map": "/25-plus-5-Clock/static/css/main.29584295.css.map",
-    "main.a6640bcf.js.map": "/25-plus-5-Clock/static/js/main.a6640bcf.js.map"
+    "main.051af72d.js.map": "/25-plus-5-Clock/static/js/main.051af72d.js.map"
   },
   "entrypoints": [
     "static/css/main.29584295.css",
-    "static/js/main.a6640bcf.js"
+    "static/js/main.051af72d.js"
   ]
 }
