@@ -14,16 +14,18 @@ export default class Clock extends React.Component {
       status: "session",
       pause: "on",
     };
-    this.handleBreakLength = this.handleBreakLength.bind(this);
-    this.handleSessionLength = this.handleSessionLength.bind(this);
+    this.handleBreakDecrement = this.handleBreakDecrement.bind(this);
+    this.handleBreakIncrement = this.handleBreakIncrement.bind(this);
+    this.handleSessionDecrement = this.handleSessionDecrement.bind(this);
+    this.handleSessionIncrement = this.handleSessionIncrement.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.start_stop = this.start_stop.bind(this);
   }
 
-  handleBreakLength(e) {
+  handleBreakDecrement() {
     this.setState(
       (state) => ({
-        break: e.target.id === "break-decrement" ? (state.break < 61 ? 60 : state.break - 60) : state.break > 3540 ? 3600 : state.break + 60,
+        break: state.break < 61 ? 60 : state.break - 60,
       }),
       () =>
         this.setState((state) => ({
@@ -31,10 +33,35 @@ export default class Clock extends React.Component {
         }))
     );
   }
-  handleSessionLength(e) {
+
+  handleBreakIncrement() {
     this.setState(
       (state) => ({
-        session: e.target.id === "session-decrement" ? (state.session < 61 ? 60 : state.session - 60) : state.session > 3540 ? 3600 : state.session + 60,
+        break: state.break > 3540 ? 3600 : state.break + 60,
+      }),
+      () =>
+        this.setState((state) => ({
+          timeLeft: state.status === "break" ? state.break : state.timeLeft,
+        }))
+    );
+  }
+
+  handleSessionDecrement() {
+    this.setState(
+      (state) => ({
+        session: state.session < 61 ? 60 : state.session - 60,
+      }),
+      () =>
+        this.setState((state) => ({
+          timeLeft: state.status === "session" ? state.session : state.timeLeft,
+        }))
+    );
+  }
+
+  handleSessionIncrement() {
+    this.setState(
+      (state) => ({
+        session: state.session > 3540 ? 3600 : state.session + 60,
       }),
       () =>
         this.setState((state) => ({
@@ -93,8 +120,8 @@ export default class Clock extends React.Component {
         <div id="clock-box">
           <h2 id="title">25 + 5 Clock</h2>
           <div id="length-boxes">
-            <Break handleBreakLength={this.handleBreakLength} breakLength={this.state.break} />
-            <Session handleSessionLength={this.handleSessionLength} sessionLength={this.state.session} />
+            <Break handleBreakDecrement={this.handleBreakDecrement} handleBreakIncrement={this.handleBreakIncrement} breakLength={this.state.break} />
+            <Session handleSessionDecrement={this.handleSessionDecrement} handleSessionIncrement={this.handleSessionIncrement} sessionLength={this.state.session} />
           </div>
           <Timer status={this.state.status} reset={this.handleReset} start_stop={this.start_stop} timeLeft={this.state.timeLeft} />
         </div>
@@ -113,11 +140,11 @@ class Break extends React.Component {
       <div className="length-box">
         <div id="break-label">Break Length</div>
         <div className="length-controls">
-          <button id="break-decrement" onClick={this.props.handleBreakLength}>
+          <button id="break-decrement" onClick={this.props.handleBreakDecrement}>
             <i className="fa-solid fa-arrow-down"></i>
           </button>
           <div id="break-length">{this.props.breakLength / 60}</div>
-          <button id="break-increment" onClick={this.props.handleBreakLength}>
+          <button id="break-increment" onClick={this.props.handleBreakIncrement}>
             <i className="fa-solid fa-arrow-up"></i>
           </button>
         </div>
@@ -135,11 +162,11 @@ class Session extends React.Component {
       <div className="length-box">
         <div id="session-label">Session Length</div>
         <div className="length-controls">
-          <button id="session-decrement" onClick={this.props.handleSessionLength}>
+          <button id="session-decrement" onClick={this.props.handleSessionDecrement}>
             <i className="fa-solid fa-arrow-down"></i>
           </button>
           <div id="session-length">{this.props.sessionLength / 60}</div>
-          <button id="session-increment" onClick={this.props.handleSessionLength}>
+          <button id="session-increment" onClick={this.props.handleSessionIncrement}>
             <i className="fa-solid fa-arrow-up"></i>
           </button>
         </div>
